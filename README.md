@@ -27,6 +27,17 @@ npm run daemon:start # Start server in background mode
 npm start
 ```
 
+## Before running add `.env`
+
+Before running this process make sure you have this variables in your environments defined, otherwise it wouldn't run.
+
+```bash
+CUSTOMER_KEY="..."
+CUSTOMER_SECRET="..."
+ACCESS_TOKEN="..."
+ACCESS_TOKEN_SECRET="..."
+```
+
 ### Logging
 
 Currently, I used a basic console.log so no need of any other logging things other than watching on terminal outputs.
