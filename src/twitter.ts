@@ -44,7 +44,7 @@ export async function Retweet(tweet: BasicTweet) {
 
 export async function RetweetWithDelay(tweets: BasicTweet[]) {
   for (const tweet of tweets) {
-    await Delay(25000);
+    await Delay(40000);
     await Retweet(tweet);
   }
 }
