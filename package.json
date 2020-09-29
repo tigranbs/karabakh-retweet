@@ -6,7 +6,10 @@
   "scripts": {
     "start": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' --transpile-only --files src/index.ts",
     "start:prod": "cd build && NODE_ENV='production' node index.js",
-    "build": "rm -rf build && tsc -p ."
+    "build": "rm -rf build && tsc -p .",
+    "daemon:start": "cd build && forever start index.js",
+    "daemon:stop": "cd build && forever stop index.js",
+    "daemon:logs": "cd build && forever logs -f index.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +24,7 @@
   "dependencies": {
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "forever": "^3.0.2",
     "twit": "^2.2.11"
   },
   "devDependencies": {
