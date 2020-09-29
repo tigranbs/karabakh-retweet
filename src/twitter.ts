@@ -19,7 +19,7 @@ const T = new Twit({
 
 export async function TweetsToRetweet(username: string): Promise<BasicTweet[]> {
   console.log('FETCHING TWEETS FOR USER -> ', username);
-  const result = await T.get(`statuses/user_timeline`, {screen_name: username, count: 50});
+  const result = await T.get(`statuses/user_timeline`, {screen_name: username, count: 5});
   if (!result.data || !(result.data instanceof Array)) {
     console.log('WRONG RESPONSE: ', result.data);
     return [];
@@ -44,13 +44,24 @@ export async function Retweet(tweet: BasicTweet) {
 
 export async function RetweetWithDelay(tweets: BasicTweet[]) {
   for (const tweet of tweets) {
-    await Delay(5000);
+    await Delay(15000);
     await Retweet(tweet);
   }
 }
 
+export async function PickRandomSource() {
+  try {
+    const username = USERNAMES[Math.floor(Math.random() * USERNAMES.length)];
+    await RetweetWithDelay(await TweetsToRetweet(username));
+  } catch (e) {
+    console.log('FAILED TO GET TWEETS AND RETWEET!!', e);
+  }
+}
+
+
 export async function RunOverSources() {
-  for (const username of USERNAMES) {
+  const randomizedUsernames = USERNAMES.sort(() => .5 - Math.random());
+  for (const username of randomizedUsernames) {
     await Delay(15000);
     try {
       await RetweetWithDelay(await TweetsToRetweet(username));
