@@ -33,7 +33,7 @@ export async function Retweet(tweet: BasicTweet) {
   console.log('RETWEETING -> ', tweet.id, ' ', tweet.username);
   try {
     await T.post('statuses/update', {
-      status: `#Artsakh #Artsakhstrong #NKpeace #Armenia #karabakhnow #StopAzerbaijaniAgression #StopAliyev https://github.com/tigranbs/karabakh-retweet`,
+      status: `#Artsakh #Artsakhstrong #Armenia #StopAzerbaijaniAgression`,
       attachment_url: `https://twitter.com/${tweet.username}/status/${tweet.id}`
     });
   } catch (e) {
